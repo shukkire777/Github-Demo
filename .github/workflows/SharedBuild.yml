@@ -1,0 +1,29 @@
+name: Shared Build
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    name: buildArtifact
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.x'  # Change to the version of .NET you're using
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build DemoGithub.sln --configuration Release
+
+    - name: Publish
+      uses: actions/upload-artifact@v4.3.3
+      with: 
+        name: Artifact
+        path: ${{github.workspace}}

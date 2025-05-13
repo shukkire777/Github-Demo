@@ -1,0 +1,25 @@
+name: 01 Dispatch
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read  
+  issues: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  build:
+    name: Call Build App
+    uses: ./.github/workflows/SharedBuild.yml
+
+    
+  test:
+    name: Call Test App
+    needs: build
+    uses: ./.github/workflows/SharedTest.yml
