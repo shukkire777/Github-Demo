@@ -1,0 +1,30 @@
+name: Shared Test
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    name: testApp
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with: 
+        name: Artifact
+        path: ${{github.workspace}}/Drop/
+
+    - name: Run unit tests
+      run: dotnet test ${{github.workspace}}/Drop/DemoGithub.UnitTest/DemoGithub.UnitTest.csproj --configuration Release --logger trx
+    
+    - name: Publish unit test results
+      if: success()
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      with:
+        files: ${{github.workspace}}/Drop/DemoGithub.UnitTest/TestResults/*.trx
+
+    # - name: Publish Test result into Artifact
+    #   uses: actions/upload-artifact@v4.3.3
+    #   with: 
+    #     name: testResult
+    #     path: ${{github.workspace}}\Drop\DemoGithub.UnitTest\TestResults\*.trx
