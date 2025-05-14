@@ -25,4 +25,10 @@ jobs:
           echo "Workspace: $GITHUB_WORKSPACE"
           echo "Workflow: $GITHUB_WORKFLOW"
 
+      - name: Set dynamic variable
+        run: echo "DYNAMIC_VAR=dynamic value" >> $GITHUB_ENV
+
+      - name: Use dynamic variable
+        run: echo $DYNAMIC_VAR
+
     
