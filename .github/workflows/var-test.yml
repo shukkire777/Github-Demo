@@ -1,0 +1,14 @@
+name: Example workflow
+
+on:
+  workflow_dispatch:
+  
+env:
+  GLOBAL_ENV_VAR: 'Firt Global variable' # This variable is available to all jobs
+  
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use global environment variable
+        run: echo $GLOBAL_ENV_VAR
