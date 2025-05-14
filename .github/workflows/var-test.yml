@@ -1,4 +1,4 @@
-name: Example workflow
+name: Variable-Test-Workflow
 
 on:
   workflow_dispatch:
@@ -12,3 +12,10 @@ jobs:
     steps:
       - name: Use global environment variable
         run: echo $GLOBAL_ENV_VAR
+        
+      - name: Print environment variables
+        run: |
+          echo "Repository name: $GITHUB_REPOSITORY"
+          echo "Branch name: $GITHUB_REF"
+
+    
