@@ -1,4 +1,4 @@
-name: Variable-Test-Workflow
+name: Composite_Flow-Test
 
 on:
   workflow_dispatch:
