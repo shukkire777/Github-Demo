@@ -1,0 +1,16 @@
+name: Variable-Test-Workflow
+
+on:
+  workflow_dispatch:
+  
+env:
+  GLOBAL_ENV_VAR: 'Firt Global variable' # This variable is available to all jobs
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use my composite action
+        uses: ./.github/actions/my-composite-action
+        with:
+          node-version: '18'
