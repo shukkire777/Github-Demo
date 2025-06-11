@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use my composite action
-        uses: ./.github/actions/my-composite-action
+        uses: ./.github/actions/my-composite-action/action.yml
         with:
           node-version: '18'
