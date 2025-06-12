@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Use my composite action
-        uses: ./.github/actions/my-composite-action/action.yml
+        uses: ./.github/actions/my-composite-action
         with:
           node-version: '18'
